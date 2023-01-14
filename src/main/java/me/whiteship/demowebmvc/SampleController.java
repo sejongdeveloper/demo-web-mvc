@@ -7,17 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
-
 @Controller
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class SampleController {
 
     @PostMapping("/events")
     @ResponseBody
-    public Event getEvent(@RequestParam Map<String, String> params) {
+    public Event getEvent(@RequestParam String name, @RequestParam Integer limit) {
         Event event = new Event();
-        event.setName(params.get("name"));
+        event.setName(name);
+        event.setLimit(limit);
         return event;
     }
 }
