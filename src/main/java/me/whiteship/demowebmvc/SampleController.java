@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SampleController {
 
-    @GetMapping(value = "/hello", params = "name")
+    @GetMapping(value = "/hello", params = "name=keesun")
     @ResponseBody
     public String hello() {
         return "hello";
