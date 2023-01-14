@@ -16,9 +16,9 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(get("/hello/keesun.json"))
+        mockMvc.perform(get("/hello"))
                 .andDo(print())
-                .andExpect(status().isNotFound())
+                .andExpect(status().isUnsupportedMediaType())
         ;
     }
 
