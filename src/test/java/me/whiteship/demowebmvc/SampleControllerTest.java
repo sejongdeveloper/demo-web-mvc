@@ -26,8 +26,7 @@ public class SampleControllerTest {
 
     @Test
     public void postEvent() throws Exception {
-        mockMvc.perform(post("/events")
-                        .param("name", "keesun")
+        mockMvc.perform(post("/events/name/keesun")
                         .param("limit", "20"))
                 .andDo(print())
                 .andExpect(status().isOk())

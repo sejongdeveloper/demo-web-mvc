@@ -22,7 +22,7 @@ public class SampleController {
         return "events/form";
     }
 
-    @PostMapping("/events")
+    @PostMapping("/events/name/{name}")
     @ResponseBody
     public Event getEvent(@ModelAttribute Event event) {
         return event;
