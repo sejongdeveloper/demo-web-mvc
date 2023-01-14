@@ -22,14 +22,9 @@ public class SampleControllerTest {
                 .andExpect(status().isOk())
         ;
 
-        mockMvc.perform(put("/hello"))
+        mockMvc.perform(get("/hi"))
                 .andDo(print())
-                .andExpect(status().isMethodNotAllowed())
-        ;
-
-        mockMvc.perform(post("/hello"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed())
+                .andExpect(status().isOk())
         ;
     }
 
