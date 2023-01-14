@@ -17,7 +17,17 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
+        mockMvc.perform(get("/hello"))
+                .andDo(print())
+                .andExpect(status().isOk())
+        ;
+
         mockMvc.perform(put("/hello"))
+                .andDo(print())
+                .andExpect(status().isOk())
+        ;
+
+        mockMvc.perform(post("/hello"))
                 .andDo(print())
                 .andExpect(status().isMethodNotAllowed())
         ;
