@@ -16,7 +16,7 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(get("/hello/keesun"))
+        mockMvc.perform(get("/hello/keesun.json"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello keesun"))

@@ -14,10 +14,4 @@ public class SampleController {
     public String helloKeesun() {
         return "hello keesun";
     }
-
-    @GetMapping("/**")
-    @ResponseBody
-    public String hello() {
-        return "hello";
-    }
 }
