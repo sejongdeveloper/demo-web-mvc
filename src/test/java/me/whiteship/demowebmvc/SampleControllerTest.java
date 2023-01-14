@@ -17,7 +17,7 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(get("/hello/123"))
+        mockMvc.perform(get("/hello/123/456"))
                 .andDo(print())
                 .andExpect(status().isOk())
         ;
