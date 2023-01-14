@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class SampleController {
@@ -25,7 +27,7 @@ public class SampleController {
 
     @PostMapping("/events/name/{name}")
     @ResponseBody
-    public Event getEvent(@ModelAttribute Event event, BindingResult bindingResult) {
+    public Event getEvent(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println("=============================");
             bindingResult.getAllErrors().forEach(c -> {
