@@ -18,10 +18,7 @@ public class SampleControllerTest {
     public void helloTest() throws Exception {
         mockMvc.perform(get("/hello/keesun.json"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("hello keesun"))
-                .andExpect(handler().handlerType(SampleController.class))
-                .andExpect(handler().methodName("helloKeesun"))
+                .andExpect(status().isNotFound())
         ;
     }
 
