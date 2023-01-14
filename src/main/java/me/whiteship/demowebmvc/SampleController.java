@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,20 +17,33 @@ import java.util.List;
 @SessionAttributes("event")
 public class SampleController {
 
-    @GetMapping("/events/form")
-    public String eventsForm(Model model) {
-        Event newEvent = new Event();
-        newEvent.setLimit(50);
-        model.addAttribute("event", newEvent);
-        return "events/form";
+    @GetMapping("/events/form/name")
+    public String eventsFormName(Model model) {
+        model.addAttribute("event", new Event());
+        return "events/form-name";
     }
 
-    @PostMapping("/events")
-    public String getEvent(@Validated @ModelAttribute Event event,
+    @PostMapping("/events/form/name")
+    public String eventsFormNameSubmit(@Validated @ModelAttribute Event event,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/form-name";
+        }
+        return "redirect:/events/form/limit";
+    }
+
+    @GetMapping("/events/form/limit")
+    public String eventsFormLimit(@ModelAttribute Event event, Model model) {
+        model.addAttribute("event", event);
+        return "events/form-limit";
+    }
+
+    @PostMapping("/events/form/limit")
+    public String eventsFormLimitSubmit(@Validated @ModelAttribute Event event,
                            BindingResult bindingResult,
                            SessionStatus sessionStatus) {
         if (bindingResult.hasErrors()) {
-            return "events/form";
+            return "events/form-limit";
         }
         sessionStatus.setComplete();
         return "redirect:/events/list";
