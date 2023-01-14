@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SampleController {
 
-    @GetMapping(value = "/hello", headers = "!" + HttpHeaders.FROM)
+    @GetMapping(value = "/hello", headers = HttpHeaders.FROM + "=" + "111")
     @ResponseBody
     public String hello() {
         return "hello";
