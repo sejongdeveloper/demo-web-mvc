@@ -18,10 +18,10 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(get("/hello")
-                        .param("name", "keesun"))
+        mockMvc.perform(options("/hello"))
                 .andDo(print())
                 .andExpect(status().isOk())
+                .andExpect(header().exists(HttpHeaders.ALLOW))
         ;
     }
 
