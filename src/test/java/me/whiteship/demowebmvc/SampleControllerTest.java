@@ -17,7 +17,7 @@ public class SampleControllerTest {
 
     @Test
     public void helloTest() throws Exception {
-        mockMvc.perform(delete("/hello"))
+        mockMvc.perform(put("/hello"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello"))
