@@ -19,7 +19,7 @@ public class SampleControllerTest {
     @Test
     public void helloTest() throws Exception {
         mockMvc.perform(get("/hello")
-                        .header(HttpHeaders.FROM, "localhost"))
+                        .header(HttpHeaders.AUTHORIZATION, "111"))
                 .andDo(print())
                 .andExpect(status().isOk())
         ;
