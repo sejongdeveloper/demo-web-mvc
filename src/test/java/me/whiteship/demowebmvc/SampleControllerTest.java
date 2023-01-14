@@ -19,7 +19,7 @@ public class SampleControllerTest {
     @Test
     public void helloTest() throws Exception {
         mockMvc.perform(get("/hello")
-                        .header(HttpHeaders.FROM, "111"))
+                        .param("name", "keesun"))
                 .andDo(print())
                 .andExpect(status().isOk())
         ;
