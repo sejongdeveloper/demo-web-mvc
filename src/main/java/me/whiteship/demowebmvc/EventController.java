@@ -23,13 +23,7 @@ import java.util.List;
 @SessionAttributes("event")
 public class EventController {
 
-    @ExceptionHandler
-    public String eventErrorHandler(EventException exception, Model model) {
-        model.addAttribute("message", "event error");
-        return "error";
-    }
-
-    @ExceptionHandler
+    @ExceptionHandler({EventException.class, RuntimeException.class})
     public String runtimeErrorHandler(RuntimeException exception, Model model) {
         model.addAttribute("message", "runtime error");
         return "error";
