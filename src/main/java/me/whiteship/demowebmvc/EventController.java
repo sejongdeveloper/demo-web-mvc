@@ -22,7 +22,7 @@ import java.util.List;
 @SessionAttributes("event")
 public class EventController {
 
-    @InitBinder
+    @InitBinder("event")
     public void initEventBinder(WebDataBinder webDataBinder) {
         webDataBinder.setDisallowedFields("id");
         webDataBinder.addValidators(new EventValidator());
