@@ -5,7 +5,7 @@
     <title>Event List</title>
 </head>
 <body>
-<a th:href="@{/events/form}">Create New Event</a>
+<a th:href="@{/events/form/name}">Create New Event</a>
 <div th:unless="${#lists.isEmpty(eventList)}">
     <ul th:each="event: ${eventList}">
         <p th:text="${event.name}">Event Name</p>

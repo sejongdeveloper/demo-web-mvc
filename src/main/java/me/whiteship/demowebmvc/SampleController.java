@@ -43,12 +43,15 @@ public class SampleController {
 
     @PostMapping("/events/form/limit")
     public String eventsFormLimitSubmit(@Validated @ModelAttribute Event event,
-                           BindingResult bindingResult,
-                           SessionStatus sessionStatus) {
+                                        BindingResult bindingResult,
+                                        SessionStatus sessionStatus,
+                                        Model model) {
         if (bindingResult.hasErrors()) {
             return "events/form-limit";
         }
         sessionStatus.setComplete();
+        model.addAttribute("name", event.getName());
+        model.addAttribute("limit", event.getLimit());
         return "redirect:/events/list";
     }
 
