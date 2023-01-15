@@ -16,7 +16,7 @@ public class Event {
     @Min(0)
     private Integer limit;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startDate;
 
     public Integer getId() {
@@ -41,5 +41,13 @@ public class Event {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 }
