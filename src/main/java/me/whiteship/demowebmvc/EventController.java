@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -19,13 +21,18 @@ import java.util.List;
 @Controller
 @SessionAttributes("event")
 public class EventController {
+
+    @InitBinder
+    public void initEventBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setDisallowedFields("id");
+    }
+
     @ModelAttribute
     public void categories(Model model) {
         model.addAttribute("categories", List.of("study", "seminar", "hobby", "social"));
     }
 
     @GetMapping("/events/form/name")
-    @ModelAttribute
     public String eventsFormName(Model model) {
         model.addAttribute("event", new Event());
         return "events/form-name";
