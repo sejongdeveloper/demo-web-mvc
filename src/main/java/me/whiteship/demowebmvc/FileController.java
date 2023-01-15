@@ -1,5 +1,6 @@
 package me.whiteship.demowebmvc;
 
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -43,9 +44,13 @@ public class FileController {
     public ResponseEntity fileDownload(@PathVariable String filename) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:" + filename);
         File file = resource.getFile();
+
+        Tika tika = new Tika();
+        String mediaType = tika.detect(file);
+
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .header(HttpHeaders.CONTENT_TYPE, "image/png")
+                .header(HttpHeaders.CONTENT_TYPE, mediaType)
                 .header(HttpHeaders.CONTENT_LENGTH, file.length() + "")
                 .body(resource);
     }
