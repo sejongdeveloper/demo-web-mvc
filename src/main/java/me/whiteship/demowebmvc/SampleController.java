@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,8 @@ public class SampleController {
     }
 
     @GetMapping("/events/list")
-    public String getEvents(Model model, @SessionAttribute LocalDateTime visitTime) {
+    public String getEvents(Model model, HttpSession httpSession) {
+        LocalDateTime visitTime = (LocalDateTime) httpSession.getAttribute("visitTime");
         System.out.println(visitTime);
         Event event = new Event();
         event.setName("spring");
