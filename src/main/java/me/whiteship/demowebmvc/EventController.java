@@ -25,7 +25,6 @@ public class EventController {
     }
 
     @GetMapping("/events/form/name")
-    @ModelAttribute
     public Event eventsFormName() {
         return new Event();
     }
