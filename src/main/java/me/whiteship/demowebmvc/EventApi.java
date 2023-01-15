@@ -1,5 +1,6 @@
 package me.whiteship.demowebmvc;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +15,13 @@ import javax.validation.Valid;
 public class EventApi {
 
     @PostMapping
-    @ResponseBody
-    public Event createEvent(@RequestBody @Valid Event event, BindingResult bindingResult) {
+    public ResponseEntity<Event> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult) {
         // save event
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> {
                 System.out.println(error);
             });
         }
-        return event;
+        return ResponseEntity.ok(event);
     }
 }
