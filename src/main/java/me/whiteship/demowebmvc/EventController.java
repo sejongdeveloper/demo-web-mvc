@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,18 @@ import java.util.List;
 @SessionAttributes("event")
 public class EventController {
 
+    @ExceptionHandler
+    public String eventErrorHandler(EventException exception, Model model) {
+        model.addAttribute("message", "event error");
+        return "error";
+    }
+
+    @ExceptionHandler
+    public String runtimeErrorHandler(RuntimeException exception, Model model) {
+        model.addAttribute("message", "runtime error");
+        return "error";
+    }
+
     @InitBinder("event")
     public void initEventBinder(WebDataBinder webDataBinder) {
         webDataBinder.setDisallowedFields("id");
@@ -35,8 +48,9 @@ public class EventController {
 
     @GetMapping("/events/form/name")
     public String eventsFormName(Model model) {
-        model.addAttribute("event", new Event());
-        return "events/form-name";
+        throw new EventException();
+//        model.addAttribute("event", new Event());
+//        return "events/form-name";
     }
 
     @PostMapping("/events/form/name")
