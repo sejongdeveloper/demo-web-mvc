@@ -1,7 +1,10 @@
 package me.whiteship.demowebmvc;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 public class Event {
 
@@ -12,6 +15,9 @@ public class Event {
 
     @Min(0)
     private Integer limit;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
 
     public Integer getId() {
         return id;
