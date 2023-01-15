@@ -25,8 +25,10 @@ public class EventController {
     }
 
     @GetMapping("/events/form/name")
-    public Event eventsFormName() {
-        return new Event();
+    @ModelAttribute
+    public String eventsFormName(Model model) {
+        model.addAttribute("event", new Event());
+        return "events/form-name";
     }
 
     @PostMapping("/events/form/name")
