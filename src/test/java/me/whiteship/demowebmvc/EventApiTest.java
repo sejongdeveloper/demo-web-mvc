@@ -36,9 +36,7 @@ class EventApiTest {
                         .content(json)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("name").value("keesun"))
-                .andExpect(jsonPath("limit").value(-20))
+                .andExpect(status().isBadRequest())
         ;
     }
 }
